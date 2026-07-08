@@ -1,0 +1,33 @@
+name: Update device database
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-devices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run pipe
+        run: python update_devices.py
+
+      - name: Commit updated devices.json
+        run: |
+          git config user.name "androidguide-bot"
+          git config user.email "actions@github.com"
+          git add devices.json
+          git diff --cached --quiet || git commit -m "Update device database"
+          git push
