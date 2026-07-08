@@ -1,79 +1,1047 @@
 {
-  "schema_version": "1.0",
-  "generated": "2026-07-08",
-  "source_note": "EOL dates from endoflife.date API (pixel.json, samsung-mobile.json), pulled 2026-07-08. Samsung dates reflect security-update end; verify against security.samsungmobile.com monthly. OnePlus/Motorola: phase-2 sources.",
-  "devices": [
-    {"id":"pixel-10a","brand":"Google","model":"Pixel 10a","released":"2026-03-05","eol":"2033-03-01","source":"endoflife.date"},
-    {"id":"pixel-10-pro-fold","brand":"Google","model":"Pixel 10 Pro Fold","released":"2025-10-04","eol":"2032-10-01","source":"endoflife.date"},
-    {"id":"pixel-10-pro","brand":"Google","model":"Pixel 10 Pro","released":"2025-08-28","eol":"2032-08-01","source":"endoflife.date"},
-    {"id":"pixel-10-pro-xl","brand":"Google","model":"Pixel 10 Pro XL","released":"2025-08-28","eol":"2032-08-01","source":"endoflife.date"},
-    {"id":"pixel-10","brand":"Google","model":"Pixel 10","released":"2025-08-28","eol":"2032-08-01","source":"endoflife.date"},
-    {"id":"pixel-9a","brand":"Google","model":"Pixel 9a","released":"2025-04-10","eol":"2032-04-01","source":"endoflife.date"},
-    {"id":"pixel-9-pro-fold","brand":"Google","model":"Pixel 9 Pro Fold","released":"2024-09-04","eol":"2031-09-01","source":"endoflife.date"},
-    {"id":"pixel-9-pro","brand":"Google","model":"Pixel 9 Pro","released":"2024-09-04","eol":"2031-09-01","source":"endoflife.date"},
-    {"id":"pixel-9-pro-xl","brand":"Google","model":"Pixel 9 Pro XL","released":"2024-08-22","eol":"2031-08-01","source":"endoflife.date"},
-    {"id":"pixel-9","brand":"Google","model":"Pixel 9","released":"2024-08-22","eol":"2031-08-01","source":"endoflife.date"},
-    {"id":"pixel-8a","brand":"Google","model":"Pixel 8a","released":"2024-05-14","eol":"2031-05-01","source":"endoflife.date"},
-    {"id":"pixel-8-pro","brand":"Google","model":"Pixel 8 Pro","released":"2023-10-04","eol":"2030-10-01","source":"endoflife.date"},
-    {"id":"pixel-8","brand":"Google","model":"Pixel 8","released":"2023-10-04","eol":"2030-10-01","source":"endoflife.date"},
-    {"id":"pixel-fold","brand":"Google","model":"Pixel Fold","released":"2023-06-28","eol":"2028-06-01","source":"endoflife.date"},
-    {"id":"pixel-7a","brand":"Google","model":"Pixel 7a","released":"2023-05-10","eol":"2028-05-01","source":"endoflife.date"},
-    {"id":"pixel-7-pro","brand":"Google","model":"Pixel 7 Pro","released":"2022-10-13","eol":"2027-10-01","source":"endoflife.date"},
-    {"id":"pixel-7","brand":"Google","model":"Pixel 7","released":"2022-10-13","eol":"2027-10-01","source":"endoflife.date"},
-    {"id":"pixel-6a","brand":"Google","model":"Pixel 6a","released":"2022-07-28","eol":"2027-07-01","source":"endoflife.date"},
-    {"id":"pixel-6-pro","brand":"Google","model":"Pixel 6 Pro","released":"2021-10-28","eol":"2026-10-01","source":"endoflife.date"},
-    {"id":"pixel-6","brand":"Google","model":"Pixel 6","released":"2021-10-28","eol":"2026-10-01","source":"endoflife.date"},
-    {"id":"pixel-5a","brand":"Google","model":"Pixel 5a","released":"2021-08-26","eol":"2024-08-01","source":"endoflife.date"},
-    {"id":"galaxy-s26-ultra","brand":"Samsung","model":"Galaxy S26 Ultra","released":"2026-03-06","eol":"2033-03-06","source":"endoflife.date"},
-    {"id":"galaxy-s26-plus","brand":"Samsung","model":"Galaxy S26+","released":"2026-03-06","eol":"2033-03-06","source":"endoflife.date"},
-    {"id":"galaxy-s26","brand":"Samsung","model":"Galaxy S26","released":"2026-03-06","eol":"2033-03-06","source":"endoflife.date"},
-    {"id":"galaxy-s25-fe","brand":"Samsung","model":"Galaxy S25 FE","released":"2025-09-04","eol":"2032-09-04","source":"endoflife.date"},
-    {"id":"galaxy-s25-edge","brand":"Samsung","model":"Galaxy S25 Edge","released":"2025-05-29","eol":"2032-05-29","source":"endoflife.date"},
-    {"id":"galaxy-s25-ultra","brand":"Samsung","model":"Galaxy S25 Ultra","released":"2025-02-03","eol":"2032-02-03","source":"endoflife.date"},
-    {"id":"galaxy-s25-plus","brand":"Samsung","model":"Galaxy S25+","released":"2025-02-03","eol":"2032-02-03","source":"endoflife.date"},
-    {"id":"galaxy-s25","brand":"Samsung","model":"Galaxy S25","released":"2025-02-03","eol":"2032-02-03","source":"endoflife.date"},
-    {"id":"galaxy-s24-fe","brand":"Samsung","model":"Galaxy S24 FE","released":"2024-09-26","eol":"2031-09-26","source":"endoflife.date"},
-    {"id":"galaxy-s24-ultra","brand":"Samsung","model":"Galaxy S24 Ultra","released":"2024-01-24","eol":"2031-01-24","source":"endoflife.date"},
-    {"id":"galaxy-s24-plus","brand":"Samsung","model":"Galaxy S24+","released":"2024-01-24","eol":"2031-01-24","source":"endoflife.date"},
-    {"id":"galaxy-s24","brand":"Samsung","model":"Galaxy S24","released":"2024-01-24","eol":"2031-01-24","source":"endoflife.date"},
-    {"id":"galaxy-s23-fe","brand":"Samsung","model":"Galaxy S23 FE","released":"2023-10-05","eol":"2028-10-05","source":"endoflife.date"},
-    {"id":"galaxy-s23-ultra","brand":"Samsung","model":"Galaxy S23 Ultra","released":"2023-02-17","eol":"2028-02-17","source":"endoflife.date"},
-    {"id":"galaxy-s23-plus","brand":"Samsung","model":"Galaxy S23+","released":"2023-02-17","eol":"2028-02-17","source":"endoflife.date"},
-    {"id":"galaxy-s23","brand":"Samsung","model":"Galaxy S23","released":"2023-02-17","eol":"2028-02-17","source":"endoflife.date"},
-    {"id":"galaxy-s22-ultra","brand":"Samsung","model":"Galaxy S22 Ultra","released":"2022-02-25","eol":"2027-02-25","source":"endoflife.date"},
-    {"id":"galaxy-s22-plus","brand":"Samsung","model":"Galaxy S22+","released":"2022-02-25","eol":"2027-02-25","source":"endoflife.date"},
-    {"id":"galaxy-s22","brand":"Samsung","model":"Galaxy S22","released":"2022-02-25","eol":"2027-02-25","source":"endoflife.date"},
-    {"id":"galaxy-s21-fe","brand":"Samsung","model":"Galaxy S21 FE 5G","released":"2022-01-07","eol":"2027-01-07","source":"endoflife.date"},
-    {"id":"galaxy-s21-ultra","brand":"Samsung","model":"Galaxy S21 Ultra 5G","released":"2021-01-29","eol":"2026-02-21","source":"endoflife.date"},
-    {"id":"galaxy-s21-plus","brand":"Samsung","model":"Galaxy S21+ 5G","released":"2021-01-29","eol":"2026-02-21","source":"endoflife.date"},
-    {"id":"galaxy-s21","brand":"Samsung","model":"Galaxy S21 5G","released":"2021-01-29","eol":"2026-02-21","source":"endoflife.date"},
-    {"id":"galaxy-s20-fe","brand":"Samsung","model":"Galaxy S20 FE","released":"2022-04-01","eol":"2025-11-04","source":"endoflife.date"},
-    {"id":"galaxy-z-fold7","brand":"Samsung","model":"Galaxy Z Fold7","released":"2025-07-25","eol":"2032-07-25","source":"endoflife.date"},
-    {"id":"galaxy-z-flip7","brand":"Samsung","model":"Galaxy Z Flip7","released":"2025-07-25","eol":"2032-07-25","source":"endoflife.date"},
-    {"id":"galaxy-z-flip7-fe","brand":"Samsung","model":"Galaxy Z Flip7 FE","released":"2025-07-25","eol":"2032-07-25","source":"endoflife.date"},
-    {"id":"galaxy-z-fold6","brand":"Samsung","model":"Galaxy Z Fold6","released":"2024-07-24","eol":"2031-07-24","source":"endoflife.date"},
-    {"id":"galaxy-z-flip6","brand":"Samsung","model":"Galaxy Z Flip6","released":"2024-07-24","eol":"2031-07-24","source":"endoflife.date"},
-    {"id":"galaxy-z-fold5","brand":"Samsung","model":"Galaxy Z Fold5","released":"2023-08-11","eol":"2028-08-11","source":"endoflife.date"},
-    {"id":"galaxy-z-flip5","brand":"Samsung","model":"Galaxy Z Flip5","released":"2023-08-11","eol":"2028-08-11","source":"endoflife.date"},
-    {"id":"galaxy-z-fold4","brand":"Samsung","model":"Galaxy Z Fold4","released":"2022-08-25","eol":"2027-08-25","source":"endoflife.date"},
-    {"id":"galaxy-z-flip4","brand":"Samsung","model":"Galaxy Z Flip4","released":"2022-08-25","eol":"2027-08-25","source":"endoflife.date"},
-    {"id":"galaxy-z-fold3","brand":"Samsung","model":"Galaxy Z Fold3 5G","released":"2021-08-27","eol":"2026-08-27","source":"endoflife.date"},
-    {"id":"galaxy-z-flip3","brand":"Samsung","model":"Galaxy Z Flip3 5G","released":"2021-08-27","eol":"2026-08-27","source":"endoflife.date"},
-    {"id":"galaxy-a57","brand":"Samsung","model":"Galaxy A57 5G","released":"2026-04-10","eol":"2032-04-10","source":"endoflife.date"},
-    {"id":"galaxy-a37","brand":"Samsung","model":"Galaxy A37 5G","released":"2026-04-10","eol":"2032-04-10","source":"endoflife.date"},
-    {"id":"galaxy-a56","brand":"Samsung","model":"Galaxy A56 5G","released":"2025-03-28","eol":"2031-03-28","source":"endoflife.date"},
-    {"id":"galaxy-a36","brand":"Samsung","model":"Galaxy A36 5G","released":"2025-03-28","eol":"2031-03-28","source":"endoflife.date"},
-    {"id":"galaxy-a26","brand":"Samsung","model":"Galaxy A26 5G","released":"2025-03-28","eol":"2031-03-28","source":"endoflife.date"},
-    {"id":"galaxy-a17","brand":"Samsung","model":"Galaxy A17 5G","released":"2025-08-27","eol":"2031-08-27","source":"endoflife.date"},
-    {"id":"galaxy-a16-5g","brand":"Samsung","model":"Galaxy A16 5G","released":"2024-10-25","eol":"2030-10-25","source":"endoflife.date"},
-    {"id":"galaxy-a55","brand":"Samsung","model":"Galaxy A55 5G","released":"2024-03-11","eol":"2029-03-11","source":"endoflife.date"},
-    {"id":"galaxy-a35","brand":"Samsung","model":"Galaxy A35 5G","released":"2024-03-11","eol":"2029-03-11","source":"endoflife.date"},
-    {"id":"galaxy-a25","brand":"Samsung","model":"Galaxy A25 5G","released":"2023-12-11","eol":"2028-12-11","source":"endoflife.date"},
-    {"id":"galaxy-a15-5g","brand":"Samsung","model":"Galaxy A15 5G","released":"2023-12-11","eol":"2028-12-11","source":"endoflife.date"},
-    {"id":"galaxy-a54","brand":"Samsung","model":"Galaxy A54 5G","released":"2023-03-24","eol":"2028-03-24","source":"endoflife.date"},
-    {"id":"galaxy-a34","brand":"Samsung","model":"Galaxy A34 5G","released":"2023-03-24","eol":"2028-03-24","source":"endoflife.date"},
-    {"id":"galaxy-a14-5g","brand":"Samsung","model":"Galaxy A14 5G","released":"2023-01-05","eol":"2027-01-05","source":"endoflife.date"},
-    {"id":"galaxy-a53","brand":"Samsung","model":"Galaxy A53 5G","released":"2022-04-01","eol":"2027-04-01","source":"endoflife.date"},
-    {"id":"galaxy-a13","brand":"Samsung","model":"Galaxy A13","released":"2022-03-23","eol":"2026-05-06","source":"endoflife.date"}
-  ]
+ "schema_version": "1.0",
+ "generated": "2026-07-08",
+ "source_note": "EOL data from endoflife.date API. Samsung dates = security-update end; spot-check against security.samsungmobile.com. Auto-generated \u2014 do not hand-edit.",
+ "devices": [
+  {
+   "id": "samsung-galaxy-a57-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A57 5G",
+   "released": "2026-04-10",
+   "eol": "2032-04-10",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a37-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A37 5G",
+   "released": "2026-04-10",
+   "eol": "2032-04-10",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s26-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S26 Ultra",
+   "released": "2026-03-06",
+   "eol": "2033-03-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s26-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S26+",
+   "released": "2026-03-06",
+   "eol": "2033-03-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s26",
+   "brand": "Samsung",
+   "model": "Galaxy S26",
+   "released": "2026-03-06",
+   "eol": "2033-03-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-10a",
+   "brand": "Google",
+   "model": "Pixel 10a",
+   "released": "2026-03-05",
+   "eol": "2033-03-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a07-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A07 5G",
+   "released": "2026-01-30",
+   "eol": "2032-01-30",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-10-pro-fold",
+   "brand": "Google",
+   "model": "Pixel 10 Pro Fold",
+   "released": "2025-10-04",
+   "eol": "2032-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s25-fe",
+   "brand": "Samsung",
+   "model": "Galaxy S25 FE",
+   "released": "2025-09-04",
+   "eol": "2032-09-04",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a07",
+   "brand": "Samsung",
+   "model": "Galaxy A07",
+   "released": "2025-09-01",
+   "eol": "2031-09-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-10-pro",
+   "brand": "Google",
+   "model": "Pixel 10 Pro",
+   "released": "2025-08-28",
+   "eol": "2032-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-10-pro-xl",
+   "brand": "Google",
+   "model": "Pixel 10 Pro XL",
+   "released": "2025-08-28",
+   "eol": "2032-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-10",
+   "brand": "Google",
+   "model": "Pixel 10",
+   "released": "2025-08-28",
+   "eol": "2032-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a17-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A17 5G",
+   "released": "2025-08-27",
+   "eol": "2031-08-27",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a17",
+   "brand": "Samsung",
+   "model": "Galaxy A17",
+   "released": "2025-08-27",
+   "eol": "2031-08-27",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold7",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold7",
+   "released": "2025-07-25",
+   "eol": "2032-07-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip7-fe",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip7 FE",
+   "released": "2025-07-25",
+   "eol": "2032-07-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip7",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip7",
+   "released": "2025-07-25",
+   "eol": "2032-07-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s25-edge",
+   "brand": "Samsung",
+   "model": "Galaxy S25 Edge",
+   "released": "2025-05-29",
+   "eol": "2032-05-29",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-9a",
+   "brand": "Google",
+   "model": "Pixel 9a",
+   "released": "2025-04-10",
+   "eol": "2032-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a56-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A56 5G",
+   "released": "2025-03-28",
+   "eol": "2031-03-28",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a36-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A36 5G",
+   "released": "2025-03-28",
+   "eol": "2031-03-28",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a26-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A26 5G",
+   "released": "2025-03-28",
+   "eol": "2031-03-28",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a06-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A06 5G",
+   "released": "2025-02-19",
+   "eol": "2031-02-19",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s25-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S25 Ultra",
+   "released": "2025-02-03",
+   "eol": "2032-02-03",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s25-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S25+",
+   "released": "2025-02-03",
+   "eol": "2032-02-03",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s25",
+   "brand": "Samsung",
+   "model": "Galaxy S25",
+   "released": "2025-02-03",
+   "eol": "2032-02-03",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a16",
+   "brand": "Samsung",
+   "model": "Galaxy A16",
+   "released": "2024-11-20",
+   "eol": "2030-11-20",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a16-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A16 5G",
+   "released": "2024-10-25",
+   "eol": "2030-10-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold-special-edition",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold Special Edition",
+   "released": "2024-10-24",
+   "eol": "2031-10-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s24-fe",
+   "brand": "Samsung",
+   "model": "Galaxy S24 FE",
+   "released": "2024-09-26",
+   "eol": "2031-09-26",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-9-pro-fold",
+   "brand": "Google",
+   "model": "Pixel 9 Pro Fold",
+   "released": "2024-09-04",
+   "eol": "2031-09-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-9-pro",
+   "brand": "Google",
+   "model": "Pixel 9 Pro",
+   "released": "2024-09-04",
+   "eol": "2031-09-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-9-pro-xl",
+   "brand": "Google",
+   "model": "Pixel 9 Pro XL",
+   "released": "2024-08-22",
+   "eol": "2031-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-9",
+   "brand": "Google",
+   "model": "Pixel 9",
+   "released": "2024-08-22",
+   "eol": "2031-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a06",
+   "brand": "Samsung",
+   "model": "Galaxy A06",
+   "released": "2024-08-22",
+   "eol": "2028-08-22",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold6",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold6",
+   "released": "2024-07-24",
+   "eol": "2031-07-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip6",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip6",
+   "released": "2024-07-24",
+   "eol": "2031-07-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-8a",
+   "brand": "Google",
+   "model": "Pixel 8a",
+   "released": "2024-05-14",
+   "eol": "2031-05-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a55-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A55 5G",
+   "released": "2024-03-11",
+   "eol": "2029-03-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a35-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A35 5G",
+   "released": "2024-03-11",
+   "eol": "2029-03-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s24-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S24 Ultra",
+   "released": "2024-01-24",
+   "eol": "2031-01-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s24-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S24+",
+   "released": "2024-01-24",
+   "eol": "2031-01-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s24",
+   "brand": "Samsung",
+   "model": "Galaxy S24",
+   "released": "2024-01-24",
+   "eol": "2031-01-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a25-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A25 5G",
+   "released": "2023-12-11",
+   "eol": "2028-12-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a15-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A15 5G",
+   "released": "2023-12-11",
+   "eol": "2028-12-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a15",
+   "brand": "Samsung",
+   "model": "Galaxy A15",
+   "released": "2023-12-11",
+   "eol": "2028-12-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a05",
+   "brand": "Samsung",
+   "model": "Galaxy A05",
+   "released": "2023-10-15",
+   "eol": "2027-10-15",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s23-fe",
+   "brand": "Samsung",
+   "model": "Galaxy S23 FE",
+   "released": "2023-10-05",
+   "eol": "2028-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-8-pro",
+   "brand": "Google",
+   "model": "Pixel 8 Pro",
+   "released": "2023-10-04",
+   "eol": "2030-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-8",
+   "brand": "Google",
+   "model": "Pixel 8",
+   "released": "2023-10-04",
+   "eol": "2030-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold5",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold5",
+   "released": "2023-08-11",
+   "eol": "2028-08-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip5",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip5",
+   "released": "2023-08-11",
+   "eol": "2028-08-11",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-fold",
+   "brand": "Google",
+   "model": "Pixel Fold",
+   "released": "2023-06-28",
+   "eol": "2028-06-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a14",
+   "brand": "Samsung",
+   "model": "Galaxy A14",
+   "released": "2023-05-22",
+   "eol": "2027-05-22",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-7a",
+   "brand": "Google",
+   "model": "Pixel 7a",
+   "released": "2023-05-10",
+   "eol": "2028-05-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a24",
+   "brand": "Samsung",
+   "model": "Galaxy A24",
+   "released": "2023-05-05",
+   "eol": "2028-05-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a54-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A54 5G",
+   "released": "2023-03-24",
+   "eol": "2028-03-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a34-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A34 5G",
+   "released": "2023-03-24",
+   "eol": "2028-03-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s23-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S23 Ultra",
+   "released": "2023-02-17",
+   "eol": "2028-02-17",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s23-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S23+",
+   "released": "2023-02-17",
+   "eol": "2028-02-17",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s23",
+   "brand": "Samsung",
+   "model": "Galaxy S23",
+   "released": "2023-02-17",
+   "eol": "2028-02-17",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a14-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A14 5G",
+   "released": "2023-01-05",
+   "eol": "2027-01-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-7-pro",
+   "brand": "Google",
+   "model": "Pixel 7 Pro",
+   "released": "2022-10-13",
+   "eol": "2027-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-7",
+   "brand": "Google",
+   "model": "Pixel 7",
+   "released": "2022-10-13",
+   "eol": "2027-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a23-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A23 5G",
+   "released": "2022-09-02",
+   "eol": "2025-09-02",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold4",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold4",
+   "released": "2022-08-25",
+   "eol": "2027-08-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip4",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip4",
+   "released": "2022-08-25",
+   "eol": "2027-08-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-6a",
+   "brand": "Google",
+   "model": "Pixel 6a",
+   "released": "2022-07-28",
+   "eol": "2027-07-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a13-sm-a137",
+   "brand": "Samsung",
+   "model": "Galaxy A13 (SM-A137)",
+   "released": "2022-07-01",
+   "eol": "2026-07-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a73-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A73 5G",
+   "released": "2022-04-22",
+   "eol": "2027-04-22",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-fe",
+   "brand": "Samsung",
+   "model": "Galaxy S20 FE",
+   "released": "2022-04-01",
+   "eol": "2025-11-04",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a53-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A53 5G",
+   "released": "2022-04-01",
+   "eol": "2027-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a33-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A33 5G",
+   "released": "2022-04-01",
+   "eol": "2027-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a23",
+   "brand": "Samsung",
+   "model": "Galaxy A23",
+   "released": "2022-03-25",
+   "eol": "2026-05-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a13",
+   "brand": "Samsung",
+   "model": "Galaxy A13",
+   "released": "2022-03-23",
+   "eol": "2026-05-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s22-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S22 Ultra",
+   "released": "2022-02-25",
+   "eol": "2027-02-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s22-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S22+",
+   "released": "2022-02-25",
+   "eol": "2027-02-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s22",
+   "brand": "Samsung",
+   "model": "Galaxy S22",
+   "released": "2022-02-25",
+   "eol": "2027-02-25",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a03",
+   "brand": "Samsung",
+   "model": "Galaxy A03",
+   "released": "2022-01-21",
+   "eol": "2026-02-21",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s21-fe-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S21 FE 5G",
+   "released": "2022-01-07",
+   "eol": "2027-01-07",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a03-core",
+   "brand": "Samsung",
+   "model": "Galaxy A03 core",
+   "released": "2021-12-06",
+   "eol": "2026-01-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a13-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A13 5G",
+   "released": "2021-12-03",
+   "eol": "2026-01-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-6-pro",
+   "brand": "Google",
+   "model": "Pixel 6 Pro",
+   "released": "2021-10-28",
+   "eol": "2026-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-6",
+   "brand": "Google",
+   "model": "Pixel 6",
+   "released": "2021-10-28",
+   "eol": "2026-10-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold3-5g",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold3 5G",
+   "released": "2021-08-27",
+   "eol": "2026-08-27",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip3-5g",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip3 5G",
+   "released": "2021-08-27",
+   "eol": "2026-08-27",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-5a",
+   "brand": "Google",
+   "model": "Pixel 5a",
+   "released": "2021-08-26",
+   "eol": "2024-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a22-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A22 5G",
+   "released": "2021-06-24",
+   "eol": "2025-07-08",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a22",
+   "brand": "Samsung",
+   "model": "Galaxy A22",
+   "released": "2021-06-03",
+   "eol": "2025-08-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a72",
+   "brand": "Samsung",
+   "model": "Galaxy A72",
+   "released": "2021-03-26",
+   "eol": "2025-03-26",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a52-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A52 5G",
+   "released": "2021-03-17",
+   "eol": "2025-03-17",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a32",
+   "brand": "Samsung",
+   "model": "Galaxy A32",
+   "released": "2021-02-25",
+   "eol": "2025-02-13",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s21-ultra-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S21 Ultra 5G",
+   "released": "2021-01-29",
+   "eol": "2026-02-21",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s21-plus-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S21+ 5G",
+   "released": "2021-01-29",
+   "eol": "2026-02-21",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s21-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S21 5G",
+   "released": "2021-01-29",
+   "eol": "2026-02-21",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a02",
+   "brand": "Samsung",
+   "model": "Galaxy A02",
+   "released": "2021-01-27",
+   "eol": "2024-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a32-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A32 5G",
+   "released": "2021-01-13",
+   "eol": "2025-02-13",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a12",
+   "brand": "Samsung",
+   "model": "Galaxy A12",
+   "released": "2020-11-24",
+   "eol": "2024-11-24",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a42-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A42 5G",
+   "released": "2020-11-11",
+   "eol": "2024-06-20",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-4a-5g",
+   "brand": "Google",
+   "model": "Pixel 4a (5G)",
+   "released": "2020-11-05",
+   "eol": "2023-11-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold2-5g",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold2 5G",
+   "released": "2020-11-04",
+   "eol": "2024-11-04",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-5",
+   "brand": "Google",
+   "model": "Pixel 5",
+   "released": "2020-10-15",
+   "eol": "2023-11-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-fe-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S20 FE 5G",
+   "released": "2020-10-02",
+   "eol": "2025-11-04",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold-2",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold 2",
+   "released": "2020-09-18",
+   "eol": "2024-09-18",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-4a",
+   "brand": "Google",
+   "model": "Pixel 4a",
+   "released": "2020-08-20",
+   "eol": "2023-08-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a51-5g-uw",
+   "brand": "Samsung",
+   "model": "Galaxy A51 5G UW",
+   "released": "2020-08-14",
+   "eol": "2024-06-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-flip-5g",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip 5G",
+   "released": "2020-08-07",
+   "eol": "2024-08-07",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a51-5g",
+   "brand": "Samsung",
+   "model": "Galaxy A51 5G",
+   "released": "2020-08-07",
+   "eol": "2024-06-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-5g-uw",
+   "brand": "Samsung",
+   "model": "Galaxy S20 5G UW",
+   "released": "2020-06-04",
+   "eol": "2024-06-04",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-ultra",
+   "brand": "Samsung",
+   "model": "Galaxy S20 Ultra",
+   "released": "2020-03-15",
+   "eol": "2025-03-14",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-ultra-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S20 Ultra 5G",
+   "released": "2020-03-06",
+   "eol": "2025-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-plus-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S20+ 5G",
+   "released": "2020-03-06",
+   "eol": "2025-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S20+",
+   "released": "2020-03-06",
+   "eol": "2025-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20-5g",
+   "brand": "Samsung",
+   "model": "Galaxy S20 5G",
+   "released": "2020-03-06",
+   "eol": "2025-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s20",
+   "brand": "Samsung",
+   "model": "Galaxy S20",
+   "released": "2020-03-06",
+   "eol": "2025-03-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-4-xl",
+   "brand": "Google",
+   "model": "Pixel 4 XL",
+   "released": "2019-10-24",
+   "eol": "2022-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-4",
+   "brand": "Google",
+   "model": "Pixel 4",
+   "released": "2019-10-24",
+   "eol": "2022-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-3a-xl",
+   "brand": "Google",
+   "model": "Pixel 3a XL",
+   "released": "2019-05-15",
+   "eol": "2022-05-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-3a",
+   "brand": "Google",
+   "model": "Pixel 3a",
+   "released": "2019-05-15",
+   "eol": "2022-05-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-a50",
+   "brand": "Samsung",
+   "model": "Galaxy A50",
+   "released": "2019-03-18",
+   "eol": "2023-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s10",
+   "brand": "Samsung",
+   "model": "Galaxy S10",
+   "released": "2019-02-20",
+   "eol": "2023-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s10-plus",
+   "brand": "Samsung",
+   "model": "Galaxy S10+",
+   "released": "2019-02-20",
+   "eol": "2023-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-s10e",
+   "brand": "Samsung",
+   "model": "Galaxy S10e",
+   "released": "2019-02-20",
+   "eol": "2023-04-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-3-xl",
+   "brand": "Google",
+   "model": "Pixel 3 XL",
+   "released": "2018-10-18",
+   "eol": "2021-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-3",
+   "brand": "Google",
+   "model": "Pixel 3",
+   "released": "2018-10-18",
+   "eol": "2021-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-2-xl",
+   "brand": "Google",
+   "model": "Pixel 2 XL",
+   "released": "2017-10-17",
+   "eol": "2020-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-2",
+   "brand": "Google",
+   "model": "Pixel 2",
+   "released": "2017-10-17",
+   "eol": "2020-10-05",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-xl",
+   "brand": "Google",
+   "model": "Pixel XL",
+   "released": "2016-10-20",
+   "eol": "2019-10-06",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel",
+   "brand": "Google",
+   "model": "Pixel",
+   "released": "2016-10-20",
+   "eol": "2019-10-06",
+   "source": "endoflife.date"
+  }
+ ]
 }
