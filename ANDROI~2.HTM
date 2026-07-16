@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndroidGuides.com — Is your Android still getting security updates?</title>
+<meta name="description" content="Free tools for Android owners: check your phone's update status and end-of-support date, find a cheaper plan, and catch real deals. 72+ devices tracked, updated monthly.">
+<style>
+  :root{--green:#3ddc84;--greendk:#188a4f;--dark:#0f1b13;--hero2:#1d4a2c;--ink:#1a2b20;--mut:#5b7364;--bg:#f6faf7;--card:#fff;--edge:#e3ede6;--warn:#c78a12;--bad:#c2402f}
+  *{margin:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+  html{scroll-behavior:smooth}
+  body{background:#fff;color:var(--ink)}
+  a{text-decoration:none}
+  /* header */
+  header{display:flex;justify-content:center;background:#fff;border-bottom:1px solid var(--edge);position:sticky;top:0;z-index:20}
+  .headInner{width:100%;max-width:1100px;padding:18px 0;display:flex;justify-content:space-between;align-items:center}
+  @media(max-width:1180px){.headInner{max-width:calc(100vw - 40px)}}
+  .logo{font-size:26px;font-weight:850;color:var(--ink);letter-spacing:-0.4px}.logo span{color:var(--greendk)}
+  nav a{margin-left:24px;color:var(--ink);font-size:14px;font-weight:600}
+  nav a:hover{color:var(--greendk)}
+  nav a.cta{background:var(--green);color:var(--dark);padding:9px 18px;border-radius:24px}
+  @media(max-width:720px){nav a:not(.cta){display:none}}
+  /* hero — Layout 1 green cover block */
+  .hero{background:linear-gradient(160deg,var(--dark) 0%,#16301f 55%,var(--hero2) 100%);color:#fff;text-align:center;padding:72px 5vw 150px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-140px;bottom:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,#3ddc8422,transparent 70%);pointer-events:none}
+  .kicker{color:var(--green);font-weight:700;letter-spacing:2px;font-size:12px;text-transform:uppercase}
+  .hero h1{font-size:clamp(30px,4.6vw,52px);margin:16px auto 14px;max-width:780px;line-height:1.12}
+  .hero>p{color:#c9dccf;max-width:560px;margin:0 auto 30px;font-size:17px}
+  .browse{display:inline-block;margin-top:20px;color:#fff;border:2px solid #ffffff55;padding:10px 24px;border-radius:26px;font-weight:700;font-size:14px}
+  .browse:hover{border-color:var(--green);color:var(--green)}
+  /* checker in hero */
+  .checker{max-width:560px;margin:0 auto;position:relative;z-index:6;text-align:left}
+  .searchrow{display:flex;gap:8px}
+  .searchrow input{flex:1;border:0;border-radius:9px;padding:14px 16px;font-size:16px;outline:none;color:var(--ink)}
+  .searchrow button{background:#fff;border:1px solid #d7e4db;border-radius:9px;padding:0 22px;font-weight:700;color:var(--dark);cursor:pointer;font-size:15px}
+  .searchrow button:hover{background:var(--bg);border-color:var(--greendk);color:var(--greendk)}
+  .sugs{position:absolute;left:0;right:0;background:#fff;border:1px solid var(--edge);border-radius:12px;margin-top:6px;overflow:hidden;z-index:30;box-shadow:0 12px 30px #0f1b1326}
+  .sugs:empty{display:none}
+  .sug{padding:11px 16px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;color:var(--ink)}
+  .sug:hover{background:var(--bg)}.sug span{color:var(--mut);font-size:12px}
+  .card{background:#fff;color:var(--ink);border:1px solid var(--edge);border-radius:16px;padding:26px;margin-top:18px;display:none;text-align:left;box-shadow:0 16px 40px #0f1b1333}
+  .card.show{display:block;animation:pop .25s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  .card h2{font-size:21px;margin-bottom:2px}
+  .brand{color:var(--mut);font-size:13px;margin-bottom:14px}
+  .status{display:inline-block;padding:6px 14px;border-radius:20px;font-weight:800;font-size:13px;margin-bottom:16px}
+  .s-ok{background:#e2f7ea;color:var(--greendk)}.s-warn{background:#faf0d8;color:var(--warn)}.s-bad{background:#fbe5e0;color:var(--bad)}
+  .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--edge);font-size:14px}
+  .row b.ok{color:var(--greendk)}.row b.warn{color:var(--warn)}.row b.bad{color:var(--bad)}
+  .bar{height:8px;background:#eef5f0;border-radius:4px;margin:16px 0 5px;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:4px}
+  .barlabel{font-size:11px;color:var(--mut);margin-bottom:14px}
+  .advice{font-size:14px;color:var(--mut);line-height:1.6}
+  .ctas{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .ctas a{flex:1;min-width:150px;text-align:center;padding:12px;border-radius:10px;font-weight:700;font-size:13px}
+  .c1{background:var(--green);color:var(--dark)}.c2{background:var(--bg);color:var(--greendk);border:1px solid var(--edge)}
+  .alertbox{margin-top:12px;display:flex;gap:8px}
+  .alertbox input{flex:1;border:1px solid #cfe0d4;border-radius:10px;padding:11px 14px;font-size:13px;outline:none}
+  .alertbox button{background:var(--dark);border:0;border-radius:10px;padding:0 18px;font-weight:700;color:#fff;cursor:pointer;font-size:13px}
+  /* live widgets — overlap the hero bottom */
+  .widgets{max-width:1100px;margin:-90px auto 0;padding:0;position:relative;z-index:5;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  @media(max-width:1180px){.widgets{max-width:calc(100vw - 40px)}}
+  .panel{background:var(--card);border:1px solid var(--edge);border-radius:16px;padding:22px;box-shadow:0 10px 30px #0f1b1314}
+  .panel h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+  .live{font-size:10px;background:#e2f7ea;color:var(--greendk);padding:3px 9px;border-radius:10px;letter-spacing:1px;font-weight:700}
+  .mini{font-size:14px;padding:9px 0;border-bottom:1px solid var(--edge);display:flex;justify-content:space-between;gap:8px;color:var(--ink)}
+  .mini:last-child{border-bottom:0}
+  .mini b.warn{color:var(--warn)} .mini b.bad{color:var(--bad)} .mini b.ok{color:var(--greendk)}
+  .mini .dev{cursor:pointer}
+  .mini .dev:hover{color:var(--greendk)}
+  .panel .foot{margin-top:12px;font-size:13px}
+  .panel .foot a{color:var(--greendk);font-weight:700}
+  /* stats strip — same white as page, hairline divider only */
+  .strip{background:transparent;color:var(--ink);margin-top:64px}
+  .strip .inner{max-width:1100px;margin:0 auto;padding:34px 5vw;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+  .stat b{font-size:30px;color:var(--greendk);display:block}
+  .stat span{color:var(--mut);font-size:13px}
+  /* tools */
+  section{padding:64px 5vw;max-width:1100px;margin:0 auto}
+  section h2{font-size:26px;margin-bottom:6px}
+  .sub{color:var(--mut);margin-bottom:30px;font-size:15px}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .tool{background:var(--card);border:1px solid var(--edge);border-radius:14px;padding:26px;position:relative;box-shadow:0 2px 10px #0f1b1308}
+  .tool .ic{width:44px;height:44px;border-radius:11px;background:#e2f7ea;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+  .tool h3{margin-bottom:8px;font-size:17px}
+  .tool p{color:var(--mut);font-size:14px;line-height:1.55}
+  .tool a{color:var(--greendk);font-weight:700;font-size:14px;display:inline-block;margin-top:12px}
+  .soon{position:absolute;top:16px;right:16px;font-size:10px;letter-spacing:1px;background:#faf0d8;color:var(--warn);padding:3px 9px;border-radius:10px;font-weight:700}
+  /* newsletter */
+  .news{background:#fff;border-top:1px solid var(--edge)}
+  .news .box{max-width:520px;margin:0 auto;text-align:center;padding:64px 5vw}
+  .news form{display:flex;gap:8px;margin-top:18px}
+  .news input{flex:1;border:1px solid #cfe0d4;border-radius:10px;padding:13px 16px;outline:none}
+  .news button{background:var(--dark);border:0;border-radius:10px;padding:13px 24px;font-weight:700;color:#fff;cursor:pointer}
+  /* footer */
+  footer{background:var(--dark);color:#8aa593;padding:30px 5vw;font-size:12px;line-height:1.7}
+  footer .links{margin-bottom:10px}
+  footer .links a{color:#8aa593;margin-right:18px}
+  footer .links a:hover{color:#fff}
+  footer a.src{color:#8aa593;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headInner">
+    <div class="logo">Android<span>Guides</span>.com</div>
+    <nav>
+      <a href="#checker">Update Tracker</a>
+      <a href="/devices">All Devices</a>
+      <a class="cta" href="#checker">Check My Phone</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="checker">
+  <h1>Is your Android still getting security updates?</h1>
+  <p>Type your phone. Get its update status, end-of-support countdown, and what to do next. No fluff — just answers.</p>
+  <div class="checker">
+    <div class="searchrow">
+      <input id="q" placeholder="e.g. Pixel 6, Galaxy S22, Z Flip5…" autocomplete="off" aria-label="Search your device">
+      <button id="go" type="button">Check</button>
+    </div>
+    <div class="sugs" id="sugs"></div>
+    <div class="card" id="card"></div>
+  </div>
+  <a class="browse" href="/devices">Browse all <span id="browse-n">72</span> devices →</a>
+</div>
+
+<!-- live widgets overlapping the hero -->
+<div class="widgets">
+  <div class="panel">
+    <h2>Losing support soon <span class="live">LIVE</span></h2>
+    <div id="w-soon"></div>
+  </div>
+  <div class="panel">
+    <h2>Recently ended <span class="live">LIVE</span></h2>
+    <div id="w-dead"></div>
+  </div>
+  <div class="panel">
+    <h2>Safest bets right now <span class="live">LIVE</span></h2>
+    <div id="w-safe"></div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="inner">
+    <div class="stat"><b id="st-total">—</b><span>devices tracked</span></div>
+    <div class="stat"><b id="st-soon">—</b><span>lose support within 12 months</span></div>
+    <div class="stat"><b id="st-dead">—</b><span>already unsupported</span></div>
+    <div class="stat"><b>Monthly</b><span>automatic data refresh</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="links">
+    <a href="#">About</a><a href="#">Affiliate Disclosure</a><a href="#">Privacy</a><a href="#">Data Sources</a><a href="#">Contact</a>
+  </div>
+  <div>
+    Some links on this site are affiliate links — if you buy through them we may earn a commission at no extra cost to you. We only recommend what the data supports.<br>
+    Device support data from public manufacturer commitments and <a class="src" href="https://endoflife.date">endoflife.date</a>, refreshed monthly. Spot-check critical decisions with your manufacturer.<br>
+    Android is a trademark of Google LLC. AndroidGuides.com is an independent publication and is not affiliated with, endorsed by, or sponsored by Google LLC.<br>
+    © 2026 AndroidGuides.com
+  </div>
+</footer>
+
+<script>
+/* ── DATA — CDN first, embedded snapshot fallback. Swap YOURUSERNAME once repo is live. ── */
+const DATA_URL = "https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json";
+
+let DEVICES = [
+{id:"pixel-10a",brand:"Google",model:"Pixel 10a",released:"2026-03-05",eol:"2033-03-01"},
+{id:"pixel-10-pro-fold",brand:"Google",model:"Pixel 10 Pro Fold",released:"2025-10-04",eol:"2032-10-01"},
+{id:"pixel-10-pro",brand:"Google",model:"Pixel 10 Pro",released:"2025-08-28",eol:"2032-08-01"},
+{id:"pixel-10-pro-xl",brand:"Google",model:"Pixel 10 Pro XL",released:"2025-08-28",eol:"2032-08-01"},
+{id:"pixel-10",brand:"Google",model:"Pixel 10",released:"2025-08-28",eol:"2032-08-01"},
+{id:"pixel-9a",brand:"Google",model:"Pixel 9a",released:"2025-04-10",eol:"2032-04-01"},
+{id:"pixel-9-pro-fold",brand:"Google",model:"Pixel 9 Pro Fold",released:"2024-09-04",eol:"2031-09-01"},
+{id:"pixel-9-pro",brand:"Google",model:"Pixel 9 Pro",released:"2024-09-04",eol:"2031-09-01"},
+{id:"pixel-9-pro-xl",brand:"Google",model:"Pixel 9 Pro XL",released:"2024-08-22",eol:"2031-08-01"},
+{id:"pixel-9",brand:"Google",model:"Pixel 9",released:"2024-08-22",eol:"2031-08-01"},
+{id:"pixel-8a",brand:"Google",model:"Pixel 8a",released:"2024-05-14",eol:"2031-05-01"},
+{id:"pixel-8-pro",brand:"Google",model:"Pixel 8 Pro",released:"2023-10-04",eol:"2030-10-01"},
+{id:"pixel-8",brand:"Google",model:"Pixel 8",released:"2023-10-04",eol:"2030-10-01"},
+{id:"pixel-fold",brand:"Google",model:"Pixel Fold",released:"2023-06-28",eol:"2028-06-01"},
+{id:"pixel-7a",brand:"Google",model:"Pixel 7a",released:"2023-05-10",eol:"2028-05-01"},
+{id:"pixel-7-pro",brand:"Google",model:"Pixel 7 Pro",released:"2022-10-13",eol:"2027-10-01"},
+{id:"pixel-7",brand:"Google",model:"Pixel 7",released:"2022-10-13",eol:"2027-10-01"},
+{id:"pixel-6a",brand:"Google",model:"Pixel 6a",released:"2022-07-28",eol:"2027-07-01"},
+{id:"pixel-6-pro",brand:"Google",model:"Pixel 6 Pro",released:"2021-10-28",eol:"2026-10-01"},
+{id:"pixel-6",brand:"Google",model:"Pixel 6",released:"2021-10-28",eol:"2026-10-01"},
+{id:"pixel-5a",brand:"Google",model:"Pixel 5a",released:"2021-08-26",eol:"2024-08-01"},
+{id:"galaxy-s26-ultra",brand:"Samsung",model:"Galaxy S26 Ultra",released:"2026-03-06",eol:"2033-03-06"},
+{id:"galaxy-s26-plus",brand:"Samsung",model:"Galaxy S26+",released:"2026-03-06",eol:"2033-03-06"},
+{id:"galaxy-s26",brand:"Samsung",model:"Galaxy S26",released:"2026-03-06",eol:"2033-03-06"},
+{id:"galaxy-s25-fe",brand:"Samsung",model:"Galaxy S25 FE",released:"2025-09-04",eol:"2032-09-04"},
+{id:"galaxy-s25-edge",brand:"Samsung",model:"Galaxy S25 Edge",released:"2025-05-29",eol:"2032-05-29"},
+{id:"galaxy-s25-ultra",brand:"Samsung",model:"Galaxy S25 Ultra",released:"2025-02-03",eol:"2032-02-03"},
+{id:"galaxy-s25-plus",brand:"Samsung",model:"Galaxy S25+",released:"2025-02-03",eol:"2032-02-03"},
+{id:"galaxy-s25",brand:"Samsung",model:"Galaxy S25",released:"2025-02-03",eol:"2032-02-03"},
+{id:"galaxy-s24-fe",brand:"Samsung",model:"Galaxy S24 FE",released:"2024-09-26",eol:"2031-09-26"},
+{id:"galaxy-s24-ultra",brand:"Samsung",model:"Galaxy S24 Ultra",released:"2024-01-24",eol:"2031-01-24"},
+{id:"galaxy-s24-plus",brand:"Samsung",model:"Galaxy S24+",released:"2024-01-24",eol:"2031-01-24"},
+{id:"galaxy-s24",brand:"Samsung",model:"Galaxy S24",released:"2024-01-24",eol:"2031-01-24"},
+{id:"galaxy-s23-fe",brand:"Samsung",model:"Galaxy S23 FE",released:"2023-10-05",eol:"2028-10-05"},
+{id:"galaxy-s23-ultra",brand:"Samsung",model:"Galaxy S23 Ultra",released:"2023-02-17",eol:"2028-02-17"},
+{id:"galaxy-s23-plus",brand:"Samsung",model:"Galaxy S23+",released:"2023-02-17",eol:"2028-02-17"},
+{id:"galaxy-s23",brand:"Samsung",model:"Galaxy S23",released:"2023-02-17",eol:"2028-02-17"},
+{id:"galaxy-s22-ultra",brand:"Samsung",model:"Galaxy S22 Ultra",released:"2022-02-25",eol:"2027-02-25"},
+{id:"galaxy-s22-plus",brand:"Samsung",model:"Galaxy S22+",released:"2022-02-25",eol:"2027-02-25"},
+{id:"galaxy-s22",brand:"Samsung",model:"Galaxy S22",released:"2022-02-25",eol:"2027-02-25"},
+{id:"galaxy-s21-fe",brand:"Samsung",model:"Galaxy S21 FE 5G",released:"2022-01-07",eol:"2027-01-07"},
+{id:"galaxy-s21-ultra",brand:"Samsung",model:"Galaxy S21 Ultra 5G",released:"2021-01-29",eol:"2026-02-21"},
+{id:"galaxy-s21-plus",brand:"Samsung",model:"Galaxy S21+ 5G",released:"2021-01-29",eol:"2026-02-21"},
+{id:"galaxy-s21",brand:"Samsung",model:"Galaxy S21 5G",released:"2021-01-29",eol:"2026-02-21"},
+{id:"galaxy-s20-fe",brand:"Samsung",model:"Galaxy S20 FE",released:"2022-04-01",eol:"2025-11-04"},
+{id:"galaxy-z-fold7",brand:"Samsung",model:"Galaxy Z Fold7",released:"2025-07-25",eol:"2032-07-25"},
+{id:"galaxy-z-flip7",brand:"Samsung",model:"Galaxy Z Flip7",released:"2025-07-25",eol:"2032-07-25"},
+{id:"galaxy-z-flip7-fe",brand:"Samsung",model:"Galaxy Z Flip7 FE",released:"2025-07-25",eol:"2032-07-25"},
+{id:"galaxy-z-fold6",brand:"Samsung",model:"Galaxy Z Fold6",released:"2024-07-24",eol:"2031-07-24"},
+{id:"galaxy-z-flip6",brand:"Samsung",model:"Galaxy Z Flip6",released:"2024-07-24",eol:"2031-07-24"},
+{id:"galaxy-z-fold5",brand:"Samsung",model:"Galaxy Z Fold5",released:"2023-08-11",eol:"2028-08-11"},
+{id:"galaxy-z-flip5",brand:"Samsung",model:"Galaxy Z Flip5",released:"2023-08-11",eol:"2028-08-11"},
+{id:"galaxy-z-fold4",brand:"Samsung",model:"Galaxy Z Fold4",released:"2022-08-25",eol:"2027-08-25"},
+{id:"galaxy-z-flip4",brand:"Samsung",model:"Galaxy Z Flip4",released:"2022-08-25",eol:"2027-08-25"},
+{id:"galaxy-z-fold3",brand:"Samsung",model:"Galaxy Z Fold3 5G",released:"2021-08-27",eol:"2026-08-27"},
+{id:"galaxy-z-flip3",brand:"Samsung",model:"Galaxy Z Flip3 5G",released:"2021-08-27",eol:"2026-08-27"},
+{id:"galaxy-a57",brand:"Samsung",model:"Galaxy A57 5G",released:"2026-04-10",eol:"2032-04-10"},
+{id:"galaxy-a37",brand:"Samsung",model:"Galaxy A37 5G",released:"2026-04-10",eol:"2032-04-10"},
+{id:"galaxy-a56",brand:"Samsung",model:"Galaxy A56 5G",released:"2025-03-28",eol:"2031-03-28"},
+{id:"galaxy-a36",brand:"Samsung",model:"Galaxy A36 5G",released:"2025-03-28",eol:"2031-03-28"},
+{id:"galaxy-a26",brand:"Samsung",model:"Galaxy A26 5G",released:"2025-03-28",eol:"2031-03-28"},
+{id:"galaxy-a17",brand:"Samsung",model:"Galaxy A17 5G",released:"2025-08-27",eol:"2031-08-27"},
+{id:"galaxy-a16-5g",brand:"Samsung",model:"Galaxy A16 5G",released:"2024-10-25",eol:"2030-10-25"},
+{id:"galaxy-a55",brand:"Samsung",model:"Galaxy A55 5G",released:"2024-03-11",eol:"2029-03-11"},
+{id:"galaxy-a35",brand:"Samsung",model:"Galaxy A35 5G",released:"2024-03-11",eol:"2029-03-11"},
+{id:"galaxy-a25",brand:"Samsung",model:"Galaxy A25 5G",released:"2023-12-11",eol:"2028-12-11"},
+{id:"galaxy-a15-5g",brand:"Samsung",model:"Galaxy A15 5G",released:"2023-12-11",eol:"2028-12-11"},
+{id:"galaxy-a54",brand:"Samsung",model:"Galaxy A54 5G",released:"2023-03-24",eol:"2028-03-24"},
+{id:"galaxy-a34",brand:"Samsung",model:"Galaxy A34 5G",released:"2023-03-24",eol:"2028-03-24"},
+{id:"galaxy-a14-5g",brand:"Samsung",model:"Galaxy A14 5G",released:"2023-01-05",eol:"2027-01-05"},
+{id:"galaxy-a53",brand:"Samsung",model:"Galaxy A53 5G",released:"2022-04-01",eol:"2027-04-01"},
+{id:"galaxy-a13",brand:"Samsung",model:"Galaxy A13",released:"2022-03-23",eol:"2026-05-06"}
+];
+
+fetch(DATA_URL).then(r=>r.ok?r.json():null).then(j=>{
+  if(j&&j.devices&&j.devices.length){DEVICES=j.devices;render();}
+}).catch(()=>{});
+
+const daysLeft=d=>Math.round((new Date(d.eol)-new Date())/86400000);
+const fmtMo=n=>{const m=Math.round(Math.abs(n)/30.4);return m<1?"weeks":m+" mo";};
+
+/* ── LIVE WIDGETS + STATS ── */
+function render(){
+  const soon=DEVICES.filter(d=>daysLeft(d)>=0&&daysLeft(d)<=548).sort((a,b)=>daysLeft(a)-daysLeft(b)).slice(0,5);
+  const dead=DEVICES.filter(d=>daysLeft(d)<0).sort((a,b)=>daysLeft(b)-daysLeft(a)).slice(0,5);
+  const safe=DEVICES.filter(d=>daysLeft(d)>0).sort((a,b)=>daysLeft(b)-daysLeft(a)).slice(0,5);
+  const mk=(list,cls,fn)=>list.map(d=>
+    `<div class="mini"><span class="dev" onclick='pick("${d.id}")'>${d.model}</span><b class="${cls}">${fn(d)}</b></div>`).join("");
+  document.getElementById('w-soon').innerHTML=mk(soon,'warn',d=>fmtMo(daysLeft(d))+" left");
+  document.getElementById('w-dead').innerHTML=mk(dead,'bad',d=>"ended "+fmtMo(daysLeft(d))+" ago");
+  document.getElementById('w-safe').innerHTML=mk(safe,'ok',d=>"until "+d.eol.slice(0,4));
+  document.getElementById('st-total').textContent=DEVICES.length;
+  document.getElementById('st-soon').textContent=DEVICES.filter(d=>{const n=daysLeft(d);return n>=0&&n<=365;}).length;
+  document.getElementById('st-dead').textContent=DEVICES.filter(d=>daysLeft(d)<0).length;
+  document.getElementById('browse-n').textContent=DEVICES.length;
+}
+render();
+
+function pick(id){
+  const d=DEVICES.find(x=>x.id===id);
+  if(d){q.value=d.model;show(d);document.getElementById('checker').scrollIntoView({behavior:'smooth'});}
+}
+
+/* ── CHECKER ── */
+const q=document.getElementById('q'),sugs=document.getElementById('sugs'),card=document.getElementById('card');
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9+]/g,'');
+q.addEventListener('input',()=>{
+  const v=norm(q.value);sugs.innerHTML='';
+  if(v.length<2)return;
+  DEVICES.filter(d=>norm(d.model).includes(v)||norm(d.brand+d.model).includes(v))
+    .slice(0,7).forEach(d=>{
+      const el=document.createElement('div');el.className='sug';
+      el.innerHTML=`<b>${d.model}</b><span>${d.brand}</span>`;
+      el.onclick=()=>{q.value=d.model;sugs.innerHTML='';show(d);};
+      sugs.appendChild(el);
+    });
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.checker'))sugs.innerHTML='';});
+
+/* Check button + Enter key: open best match for whatever's typed */
+function goCheck(){
+  const v=norm(q.value);
+  if(v.length<2)return;
+  const d=DEVICES.find(x=>norm(x.model)===v)||
+          DEVICES.filter(x=>norm(x.model).includes(v)||norm(x.brand+x.model).includes(v))
+                 .sort((a,b)=>a.model.length-b.model.length)[0];
+  if(d){q.value=d.model;sugs.innerHTML='';show(d);}
+  else{card.className='card show';card.innerHTML=
+    `<h2>Not found yet</h2><p class="advice">We couldn't match "${q.value}". The database currently covers Google Pixel and Samsung Galaxy S/A/Z series — more brands coming soon. <a href="/devices" style="color:var(--greendk);font-weight:700">Browse everything we track →</a></p>`;}
+}
+document.getElementById('go').addEventListener('click',goCheck);
+q.addEventListener('keydown',e=>{if(e.key==='Enter')goCheck();});
+
+function show(d){
+  const days=daysLeft(d),months=Math.round(days/30.4);
+  const rel=new Date(d.released),eol=new Date(d.eol);
+  const used=Math.min(1,Math.max(0,(new Date()-rel)/(eol-rel)));
+  let cls,label,advice,barColor;
+  if(days<0){cls='s-bad';label='⛔ SUPPORT ENDED';barColor='var(--bad)';
+    advice=`This device stopped receiving security updates ${Math.abs(months)} months ago. Every unpatched month increases exposure to known exploits. Realistic options: upgrade while trade-in value remains, or limit it to non-sensitive use.`;}
+  else if(days<365){cls='s-warn';label=`⚠️ ENDS IN ${months} MONTHS`;barColor='var(--warn)';
+    advice=`Support ends ${d.eol}. Trade-in values are highest BEFORE end-of-life — this is the window to plan an upgrade on your terms, not in a panic.`;}
+  else{cls='s-ok';label='✅ SUPPORTED';barColor='var(--green)';
+    advice=`You're covered until ${d.eol} — about ${(days/365).toFixed(1)} more years. No action needed.`;}
+  card.className='card show';
+  card.innerHTML=`
+    <h2>${d.model}</h2><div class="brand">${d.brand} · released ${d.released}</div>
+    <div class="status ${cls}">${label}</div>
+    <div class="row"><span>Security support until</span><b class="${days<0?'bad':days<365?'warn':'ok'}">${d.eol}</b></div>
+    <div class="row"><span>Time remaining</span><b class="${days<0?'bad':days<365?'warn':'ok'}">${days<0?'None — ended':months+' months ('+days+' days)'}</b></div>
+    <div class="row"><span>Support lifetime used</span><b>${Math.round(used*100)}%</b></div>
+    <div class="bar"><i style="width:${Math.round(used*100)}%;background:${barColor}"></i></div>
+    <div class="barlabel">released ${d.released} ————— end of support ${d.eol}</div>
+    <p class="advice">${advice}</p>
+    <div class="ctas">
+      <a class="c1" href="/devices">See every device we track →</a>
+    </div>`;
+}
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
