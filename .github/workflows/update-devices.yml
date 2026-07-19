@@ -24,11 +24,14 @@ jobs:
       - name: Run pipe (with validation gates)
         run: python update_devices.py
 
-      - name: Commit updated devices.json
+      - name: Generate crawlable HTML fragment
+        run: python generate_static.py
+
+      - name: Commit updated data
         run: |
           git config user.name "androidguide-bot"
           git config user.email "actions@github.com"
-          git add devices.json
+          git add devices.json devices-static.html
           git diff --cached --quiet || git commit -m "Update device database"
           git push
 
