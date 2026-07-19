@@ -14,14 +14,14 @@ jobs:
 
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
-      - name: Run pipe
+      - name: Run pipe (with validation gates)
         run: python update_devices.py
 
       - name: Commit updated devices.json
@@ -31,3 +31,6 @@ jobs:
           git add devices.json
           git diff --cached --quiet || git commit -m "Update device database"
           git push
+
+      - name: Purge jsDelivr CDN
+        run: curl -fsS "https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json" || true
