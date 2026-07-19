@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Manual corrections. update_devices.py merges these LAST, so an entry here always beats the automated source. Never hand-edit devices.json - fix it here instead. Format documented in PIPELINE-OPS.md.",
+  "overrides": []
+}
