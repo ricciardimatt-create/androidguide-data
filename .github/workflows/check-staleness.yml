@@ -1,0 +1,25 @@
+name: Data staleness check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 13 * * 1"   # every Monday 13:00 UTC
+
+permissions:
+  contents: read
+
+jobs:
+  check-staleness:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run staleness check
+        run: python check_staleness.py
