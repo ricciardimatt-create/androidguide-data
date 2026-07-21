@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "generated": "2026-07-19",
+ "generated": "2026-07-21",
  "source_note": "EOL data from endoflife.date API. Samsung dates = security-update end; spot-check against security.samsungmobile.com. Auto-generated \u2014 do not hand-edit.",
  "devices": [
   {
