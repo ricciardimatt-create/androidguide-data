@@ -1,0 +1,51 @@
+name: Update device database
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-devices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Fetch + merge overrides + VALIDATION GATES.
+      # If any gate fails this step exits non-zero, the whole run goes red,
+      # GitHub emails the owner, and nothing below runs — the previous
+      # devices.json stays live. Bad data can never reach visitors.
+      - name: Run guarded pipe (fetch + gates)
+        run: python update_devices.py
+
+      # Only reached when the gates passed. Regenerate the crawlable
+      # sentences fragment from the fresh, validated devices.json.
+      - name: Regenerate crawlable fragment
+        run: python generate_static.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "androidguide-bot"
+          git config user.email "actions@github.com"
+          git add devices.json devices-static.html
+          git diff --cached --quiet || git commit -m "Update device database"
+          git push
+
+      # Force jsDelivr to drop its cached copy so visitors get the fresh
+      # data in minutes instead of up to ~12h. Non-fatal if it hiccups —
+      # the weekly staleness check is the backstop.
+      - name: Purge jsDelivr CDN
+        run: |
+          curl -sf "https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json" > /dev/null \
+            && echo "jsDelivr purge OK" \
+            || echo "jsDelivr purge request sent (non-fatal)"
