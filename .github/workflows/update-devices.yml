@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -49,3 +49,13 @@ jobs:
           curl -sf "https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json" > /dev/null \
             && echo "jsDelivr purge OK" \
             || echo "jsDelivr purge request sent (non-fatal)"
+
+      # Push a same-origin copy of both files to WordPress so /devices can
+      # fall back to our own server if the CDN is ever down. Runs LAST, so
+      # the CDN path is already updated regardless; a failure here turns the
+      # run red (email) without risking the primary data path.
+      - name: Push same-origin copy to WordPress
+        env:
+          WP_APP_USER: ${{ secrets.WP_APP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: python push_to_wp.py
