@@ -30,6 +30,12 @@ ENDPOINT = WP_BASE + "/wp-json/androidguide/v1/push"
 FILES = ["devices.json", "devices-static.html"]
 HERE = Path(__file__).parent
 
+# A browser-like User-Agent: some managed hosts (SiteGround included) return
+# an empty/challenge page to the default "Python-urllib" agent. This is our
+# own authenticated API, so identifying as a normal client is appropriate.
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+      "Chrome/124.0.0.0 Safari/537.36 AndroidGuidesPipe/1.0")
+
 
 def main() -> int:
     user = os.environ.get("WP_APP_USER", "").strip()
@@ -57,19 +63,39 @@ def main() -> int:
         req = urllib.request.Request(ENDPOINT, data=body, method="POST")
         req.add_header("Authorization", "Basic " + auth)
         req.add_header("Content-Type", "application/json")
+        req.add_header("Accept", "application/json")
+        req.add_header("User-Agent", UA)
 
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
-                resp = json.load(r)
-            print(f"[OK] pushed {name} -> {resp.get('url')} "
-                  f"({resp.get('bytes')} bytes)")
+                status = r.status
+                final_url = r.geturl()
+                raw = r.read().decode("utf-8", "replace")
         except urllib.error.HTTPError as e:
-            detail = e.read().decode(errors="replace")[:300]
-            print(f"[FAIL] {name}: HTTP {e.code} {detail}")
+            detail = e.read().decode("utf-8", "replace")[:400]
+            print(f"[FAIL] {name}: HTTP {e.code} — {detail!r}")
             fails += 1
-        except Exception as e:  # network, timeout, JSON, etc.
+            continue
+        except Exception as e:
             print(f"[FAIL] {name}: {e}")
             fails += 1
+            continue
+
+        try:
+            resp = json.loads(raw)
+        except json.JSONDecodeError:
+            print(f"[FAIL] {name}: HTTP {status} at {final_url} — "
+                  f"response was not JSON. First 400 chars: {raw[:400]!r}")
+            fails += 1
+            continue
+
+        if not (isinstance(resp, dict) and resp.get("ok")):
+            print(f"[FAIL] {name}: endpoint returned {resp}")
+            fails += 1
+            continue
+
+        print(f"[OK] pushed {name} -> {resp.get('url')} "
+              f"({resp.get('bytes')} bytes)")
 
     if fails:
         print(f"[FAIL] {fails} file(s) failed to push to WordPress")
