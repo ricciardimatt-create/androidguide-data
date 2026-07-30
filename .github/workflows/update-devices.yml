@@ -1,38 +1,30 @@
 name: Update device database
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 12 1 * *"
-
 permissions:
   contents: write
-
 jobs:
   update-devices:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
-
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
       # Fetch + merge overrides + VALIDATION GATES.
       # If any gate fails this step exits non-zero, the whole run goes red,
       # GitHub emails the owner, and nothing below runs — the previous
       # devices.json stays live. Bad data can never reach visitors.
       - name: Run guarded pipe (fetch + gates)
         run: python update_devices.py
-
       # Only reached when the gates passed. Regenerate the crawlable
       # sentences fragment from the fresh, validated devices.json.
       - name: Regenerate crawlable fragment
         run: python generate_static.py
-
       - name: Commit updated data
         run: |
           git config user.name "androidguide-bot"
@@ -40,16 +32,33 @@ jobs:
           git add devices.json devices-static.html
           git diff --cached --quiet || git commit -m "Update device database"
           git push
-
-      # Force jsDelivr to drop its cached copy so visitors get the fresh
-      # data in minutes instead of up to ~12h. Non-fatal if it hiccups —
-      # the weekly staleness check is the backstop.
-      - name: Purge jsDelivr CDN
+      # Purge jsDelivr for BOTH files, then VERIFY the cached copy actually
+      # went fresh — retrying so GitHub's raw layer has time to propagate the
+      # commit before jsDelivr re-fetches it. The old version purged once,
+      # immediately after push, and often re-cached the previous (stale) file
+      # because GitHub hadn't propagated yet — then reported a fake "OK".
+      # Non-fatal (a warning, not a red run) so a slow CDN never blocks the
+      # WordPress push below; the weekly staleness check is the backstop.
+      - name: Purge jsDelivr CDN and verify it took
         run: |
-          curl -sf "https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json" > /dev/null \
-            && echo "jsDelivr purge OK" \
-            || echo "jsDelivr purge request sent (non-fatal)"
-
+          BASE_PURGE="https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main"
+          BASE_CDN="https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main"
+          EXPECT=$(python -c "import json;print(json.load(open('devices.json'))['generated'])")
+          echo "repo devices.json generated: $EXPECT — purging CDN and confirming sync"
+          SYNCED=0
+          for i in 1 2 3 4 5 6; do
+            curl -s "$BASE_PURGE/devices.json" > /dev/null || true
+            curl -s "$BASE_PURGE/devices-static.html" > /dev/null || true
+            sleep 20
+            GOT=$(curl -s "$BASE_CDN/devices.json" | python -c "import sys,json;print(json.load(sys.stdin).get('generated',''))" 2>/dev/null || echo "")
+            echo "attempt $i: CDN generated=$GOT (want $EXPECT)"
+            if [ "$GOT" = "$EXPECT" ]; then SYNCED=1; break; fi
+          done
+          if [ "$SYNCED" = "1" ]; then
+            echo "jsDelivr CDN confirmed in sync with repo ($EXPECT)"
+          else
+            echo "::warning::jsDelivr CDN did not confirm sync after 6 attempts; the weekly staleness check will re-flag it"
+          fi
       # Push a same-origin copy of both files to WordPress so /devices can
       # fall back to our own server if the CDN is ever down. Runs LAST, so
       # the CDN path is already updated regardless; a failure here turns the
