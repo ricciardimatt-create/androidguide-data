@@ -28,7 +28,7 @@ SOURCES = {
 }
 OUTPUT = Path(__file__).parent / "devices.json"
 OVERRIDES_FILE = Path(__file__).parent / "overrides.json"
-USER_AGENT = "AndroidGuideBot/1.0 (androidguides.com; contact: ricciardi.matt@gmail.com)"
+USER_AGENT = "AndroidGuideBot/1.0 (androidguides.com; contact: contact@androidguides.com)"
 
 # ---------------------------------------------------------------- filters
 # Only keep US-relevant Samsung lines; Pixel keeps everything phone-shaped.
