@@ -177,8 +177,9 @@ shipping.
 The endoflife.date API exposes Android-upgrade support separately from security-update
 end dates. The pipeline accepts only a dated upstream `eol` as a security-update end;
 it never substitutes the API's `support` field. A record with a support date but no
-explicit security end is skipped with a warning until the security date is published
-or a manufacturer-backed override is reviewed.
+explicit security end trips the validation gate and stops the entire publication. The
+previous dataset keeps serving until the security date is published, a manufacturer-backed
+override is reviewed, or the provenance-aware schema and renderers are deployed together.
 
 Samsung dates reflect endoflife.date's explicit security-update end where published.
 Records without an explicit security end should be treated as unknown and verified with

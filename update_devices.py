@@ -71,25 +71,29 @@ def slugify(brand: str, model: str) -> str:
     return s
 
 
-def normalize(brand: str, raw: list) -> list:
+def normalize(brand: str, raw: list, semantic_failures=None) -> list:
     """Convert endoflife.date records to our schema. Facts only."""
     out = []
     for item in raw:
         model = item.get("releaseLabel") or item.get("cycle", "")
-        eol = item.get("eol")
-        released = item.get("releaseDate")
-        if model and not isinstance(eol, str) and isinstance(item.get("support"), str):
-            print(
-                f"[WARN] {brand} {model}: explicit security EOL missing; "
-                "support date not substituted")
-        if not (model and released and isinstance(eol, str)):
-            continue  # skip records without hard dates
         if brand == "Samsung" and not SAMSUNG_KEEP.match(model):
             continue
         if brand == "Google" and PIXEL_SKIP.search(model):
             continue
         if brand == "Google" and not model.startswith("Pixel"):
             model = f"Pixel {model}"
+        eol = item.get("eol")
+        released = item.get("releaseDate")
+        if model and not isinstance(eol, str) and isinstance(item.get("support"), str):
+            message = (
+                f"{brand} {model}: explicit security EOL missing; "
+                "support date cannot substitute")
+            print(
+                f"[WARN] {message}")
+            if semantic_failures is not None:
+                semantic_failures.append(message)
+        if not (model and released and isinstance(eol, str)):
+            continue  # skip records without hard dates
         out.append({
             "id": slugify(brand, model),
             "brand": brand,
@@ -223,9 +227,10 @@ def main() -> int:
     existing = load_existing()
 
     devices = []
+    semantic_failures = []
     for brand, endpoint in SOURCES.items():
         try:
-            devices += normalize(brand, fetch(endpoint))
+            devices += normalize(brand, fetch(endpoint), semantic_failures)
         except Exception as e:  # one source failing shouldn't kill the run
             print(f"[WARN] {brand} fetch failed: {e} — keeping existing entries")
             devices += [d for d in existing.values() if d["brand"] == brand]
@@ -268,6 +273,8 @@ def main() -> int:
 
     # ---------------- VALIDATION GATE: fail = no write, non-zero exit ----------------
     fails = validate(deduped, existing)
+    fails.extend(
+        f"semantic provenance: {message}" for message in semantic_failures)
     if fails:
         print(f"\n[FAIL] {len(fails)} validation gate failure(s) — devices.json NOT written:")
         for f in fails:
