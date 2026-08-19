@@ -172,6 +172,19 @@ entries are separated by commas. Overridden/added records get `"source":
 are validated too — a typo'd date trips the gate and emails you rather than
 shipping.
 
+## Security-date provenance guard
+
+The endoflife.date API exposes Android-upgrade support separately from security-update
+end dates. The pipeline accepts only a dated upstream `eol` as a security-update end;
+it never substitutes the API's `support` field. A record with a support date but no
+explicit security end is skipped with a warning until the security date is published
+or a manufacturer-backed override is reviewed.
+
+Samsung dates reflect endoflife.date's explicit security-update end where published.
+Records without an explicit security end should be treated as unknown and verified with
+Samsung. This semantic guard matters because a plausible date of the wrong kind passes
+ordinary schema, range, and count validation.
+
 ## If endoflife.date is down, rate-limits us, or disappears
 
 The entire database derives from one upstream source. This is the single biggest

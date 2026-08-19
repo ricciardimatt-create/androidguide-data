@@ -76,8 +76,12 @@ def normalize(brand: str, raw: list) -> list:
     out = []
     for item in raw:
         model = item.get("releaseLabel") or item.get("cycle", "")
-        eol = item.get("eol") or item.get("support")
+        eol = item.get("eol")
         released = item.get("releaseDate")
+        if model and not isinstance(eol, str) and isinstance(item.get("support"), str):
+            print(
+                f"[WARN] {brand} {model}: explicit security EOL missing; "
+                "support date not substituted")
         if not (model and released and isinstance(eol, str)):
             continue  # skip records without hard dates
         if brand == "Samsung" and not SAMSUNG_KEEP.match(model):
@@ -280,8 +284,10 @@ def main() -> int:
     OUTPUT.write_text(json.dumps({
         "schema_version": "1.0",
         "generated": today,
-        "source_note": "EOL data from endoflife.date API. Samsung dates = security-update end; "
-                       "spot-check against security.samsungmobile.com. Auto-generated — do not hand-edit.",
+        "source_note": "EOL data from endoflife.date API. Samsung dates reflect "
+                       "endoflife.date's explicit security-update end where published. "
+                       "Records without an explicit security end are treated as unknown "
+                       "and should be verified with Samsung. Auto-generated — do not hand-edit.",
         "devices": deduped,
     }, indent=1))
     print(f"[OK] wrote {OUTPUT} ({len(deduped)} devices)")

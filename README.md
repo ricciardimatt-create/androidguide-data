@@ -35,9 +35,10 @@ Every `id` maps to a page at `https://androidguides.com/device/<id>/` — for ex
 Google Pixel and Samsung Galaxy (S, A and Z series) sold in the US. Not currently covered:
 OnePlus, Motorola, Sony, Xiaomi, Nokia, Fairphone.
 
-Dates reflect the end of **security updates**, not the end of OS version upgrades. Where a
-manufacturer publishes a support window rather than an exact date, the date is calculated
-from the release date.
+Dates reflect the end of **security updates**, not the end of OS version upgrades.
+Samsung dates reflect endoflife.date's explicit security-update end where published.
+Records without an explicit security end should be treated as unknown and verified with
+Samsung.
 
 ## License and citation
 
