@@ -1,8 +1,64 @@
 {
  "schema_version": "1.0",
- "generated": "2026-08-04",
- "source_note": "EOL data from endoflife.date API. Samsung dates = security-update end; spot-check against security.samsungmobile.com. Auto-generated \u2014 do not hand-edit.",
+ "generated": "2026-08-21",
+ "source_note": "Security-update end dates from endoflife.date's explicit EOL field where published, plus reviewed manufacturer-exact corrections in overrides.json. Android-upgrade support dates are never substituted. Auto-generated \u2014 do not hand-edit.",
  "devices": [
+  {
+   "id": "google-pixel-11-pro-fold",
+   "brand": "Google",
+   "model": "Pixel 11 Pro Fold",
+   "released": "2026-08-20",
+   "eol": "2033-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-11-pro",
+   "brand": "Google",
+   "model": "Pixel 11 Pro",
+   "released": "2026-08-20",
+   "eol": "2033-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-11-pro-xl",
+   "brand": "Google",
+   "model": "Pixel 11 Pro XL",
+   "released": "2026-08-20",
+   "eol": "2033-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "google-pixel-11",
+   "brand": "Google",
+   "model": "Pixel 11",
+   "released": "2026-08-20",
+   "eol": "2033-08-01",
+   "source": "endoflife.date"
+  },
+  {
+   "id": "samsung-galaxy-z-fold8",
+   "source": "override",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold8",
+   "released": "2026-08-07",
+   "eol": "2033-07-31"
+  },
+  {
+   "id": "samsung-galaxy-z-flip8",
+   "source": "override",
+   "brand": "Samsung",
+   "model": "Galaxy Z Flip8",
+   "released": "2026-08-07",
+   "eol": "2033-07-31"
+  },
+  {
+   "id": "samsung-galaxy-z-fold8-ultra",
+   "source": "override",
+   "brand": "Samsung",
+   "model": "Galaxy Z Fold8 Ultra",
+   "released": "2026-08-07",
+   "eol": "2033-07-31"
+  },
   {
    "id": "samsung-galaxy-a57-5g",
    "brand": "Samsung",
@@ -525,11 +581,11 @@
   },
   {
    "id": "samsung-galaxy-a23-5g",
+   "source": "override",
    "brand": "Samsung",
    "model": "Galaxy A23 5G",
    "released": "2022-09-02",
-   "eol": "2025-09-02",
-   "source": "endoflife.date"
+   "eol": "2026-09-30"
   },
   {
    "id": "samsung-galaxy-z-fold4",
