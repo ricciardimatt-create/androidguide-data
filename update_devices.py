@@ -85,13 +85,14 @@ def normalize(brand: str, raw: list, semantic_failures=None) -> list:
         eol = item.get("eol")
         released = item.get("releaseDate")
         if model and not isinstance(eol, str) and isinstance(item.get("support"), str):
+            device_id = slugify(brand, model)
             message = (
                 f"{brand} {model}: explicit security EOL missing; "
                 "support date cannot substitute")
             print(
                 f"[WARN] {message}")
             if semantic_failures is not None:
-                semantic_failures.append(message)
+                semantic_failures.append({"id": device_id, "message": message})
         if not (model and released and isinstance(eol, str)):
             continue  # skip records without hard dates
         out.append({
@@ -112,28 +113,41 @@ def load_existing() -> dict:
 
 
 # ---------------------------------------------------------------- overrides (P1)
-def apply_overrides(devices: list) -> list:
+def apply_overrides(devices: list, semantic_failures=None, entries=None) -> list:
     """Merge manual corrections from overrides.json. Runs LAST so a human
-    fact always beats the automated source. See PIPELINE-OPS.md for format."""
-    if not OVERRIDES_FILE.exists():
-        return devices
-    data = json.loads(OVERRIDES_FILE.read_text())
-    entries = data.get("overrides", [])
+    fact always beats the automated source. A provenance failure is cleared
+    only by a sourced date or an explicit exclusion for the same device id.
+    See PIPELINE-OPS.md for format."""
+    if entries is None:
+        if not OVERRIDES_FILE.exists():
+            return devices
+        data = json.loads(OVERRIDES_FILE.read_text())
+        entries = data.get("overrides", [])
     if not entries:
         return devices
     by_id = {d["id"]: d for d in devices}
     applied = 0
+    unresolved_ids = {
+        failure["id"] for failure in (semantic_failures or [])
+    }
+    cleared_ids = set()
     for ov in entries:
         oid = ov.get("id")
         if not oid or not ov.get("reason"):
             print(f"[WARN] override skipped (needs 'id' and 'reason'): {ov}")
             continue
         if ov.get("remove") is True:
-            if by_id.pop(oid, None) is not None:
+            removed = by_id.pop(oid, None) is not None
+            if removed:
                 print(f"  * OVERRIDE remove: {oid} ({ov['reason']})")
+                applied += 1
+            elif oid in unresolved_ids:
+                print(f"  * OVERRIDE exclude unresolved: {oid} ({ov['reason']})")
                 applied += 1
             else:
                 print(f"[WARN] override remove: id not found: {oid}")
+            if removed or oid in unresolved_ids:
+                cleared_ids.add(oid)
             continue
         fields = ov.get("fields", {})
         bad_keys = set(fields) - set(REQUIRED_FIELDS)
@@ -156,6 +170,31 @@ def apply_overrides(devices: list) -> list:
             applied += 1
         else:
             print(f"[WARN] override {oid}: id not in dataset (add:true to insert)")
+            continue
+
+        if oid in unresolved_ids:
+            sourced_security_date = (
+                isinstance(fields.get("eol"), str)
+                and bool(fields["eol"].strip())
+                and ov.get("security_eol_basis") == "manufacturer_exact"
+                and isinstance(ov.get("source_url"), str)
+                and ov["source_url"].startswith("https://")
+                and isinstance(ov.get("source_note"), str)
+                and bool(ov["source_note"].strip())
+            )
+            if sourced_security_date:
+                cleared_ids.add(oid)
+                print(f"  * PROVENANCE resolved: {oid} from {ov['source_url']}")
+            else:
+                print(
+                    f"[WARN] override {oid}: unresolved security provenance; "
+                    "requires eol, manufacturer_exact basis, source_url, and source_note")
+
+    if semantic_failures is not None and cleared_ids:
+        semantic_failures[:] = [
+            failure for failure in semantic_failures
+            if failure["id"] not in cleared_ids
+        ]
     print(f"  * {applied} override(s) applied")
     return sorted(by_id.values(), key=lambda x: x["released"], reverse=True)
 
@@ -243,7 +282,7 @@ def main() -> int:
             deduped.append(d)
 
     # Manual corrections merge LAST (P1)
-    deduped = apply_overrides(deduped)
+    deduped = apply_overrides(deduped, semantic_failures)
     seen = {d["id"] for d in deduped}
 
     # Diff report — this becomes your monthly changelog / newsletter fodder
@@ -274,7 +313,8 @@ def main() -> int:
     # ---------------- VALIDATION GATE: fail = no write, non-zero exit ----------------
     fails = validate(deduped, existing)
     fails.extend(
-        f"semantic provenance: {message}" for message in semantic_failures)
+        f"semantic provenance: {failure['message']}"
+        for failure in semantic_failures)
     if fails:
         print(f"\n[FAIL] {len(fails)} validation gate failure(s) — devices.json NOT written:")
         for f in fails:
@@ -291,10 +331,10 @@ def main() -> int:
     OUTPUT.write_text(json.dumps({
         "schema_version": "1.0",
         "generated": today,
-        "source_note": "EOL data from endoflife.date API. Samsung dates reflect "
-                       "endoflife.date's explicit security-update end where published. "
-                       "Records without an explicit security end are treated as unknown "
-                       "and should be verified with Samsung. Auto-generated — do not hand-edit.",
+        "source_note": "Security-update end dates from endoflife.date's explicit EOL field "
+                       "where published, plus reviewed manufacturer-exact corrections in "
+                       "overrides.json. Android-upgrade support dates are never substituted. "
+                       "Auto-generated — do not hand-edit.",
         "devices": deduped,
     }, indent=1))
     print(f"[OK] wrote {OUTPUT} ({len(deduped)} devices)")

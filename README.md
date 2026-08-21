@@ -37,9 +37,9 @@ OnePlus, Motorola, Sony, Xiaomi, Nokia, Fairphone.
 
 Dates reflect the end of **security updates**, not the end of OS version upgrades.
 Samsung dates reflect endoflife.date's explicit security-update end where published.
-Records without an explicit security end should be treated as unknown and verified with
-Samsung. Until the provenance-aware schema and renderers deploy together, a support-only
-upstream record fails the publication gate rather than deleting a page or shipping a false date.
+Reviewed manufacturer-exact corrections are recorded with source URLs and explanatory notes
+in `overrides.json`. A support-only upstream record otherwise fails the publication gate;
+the pipeline never substitutes an Android-upgrade date for a security-update deadline.
 
 ## License and citation
 

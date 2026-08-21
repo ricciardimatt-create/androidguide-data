@@ -137,6 +137,9 @@ Actions → Update device database → Run workflow).
 {
   "id": "samsung-galaxy-s22",
   "fields": { "eol": "2027-06-30" },
+  "security_eol_basis": "manufacturer_exact",
+  "source_url": "https://www.samsung.com/example/security-spec/",
+  "source_note": "Samsung publishes 30 June 2027 as the security-update deadline.",
   "reason": "Samsung security page shows June 2027, endoflife.date lags",
   "added": "2026-07-26"
 }
@@ -151,6 +154,9 @@ Actions → Update device database → Run workflow).
     "brand": "Samsung", "model": "Galaxy A99",
     "released": "2026-06-01", "eol": "2032-06-01"
   },
+  "security_eol_basis": "manufacturer_exact",
+  "source_url": "https://www.samsung.com/example/security-spec/",
+  "source_note": "Samsung publishes 1 June 2032 as the security-update deadline.",
   "reason": "Missing upstream; dates from samsung.com press release",
   "added": "2026-07-26"
 }
@@ -170,7 +176,11 @@ Rules: `id` and `reason` are required (a missing reason skips the entry). Multip
 entries are separated by commas. Overridden/added records get `"source":
 "override"` so human facts stay distinguishable from automated ones. Overrides
 are validated too — a typo'd date trips the gate and emails you rather than
-shipping.
+shipping. To clear a missing-security-date provenance failure, the override for
+that exact device id must either be an explicit `"remove": true` exclusion or
+provide all of `fields.eol`, `security_eol_basis: "manufacturer_exact"`, an
+HTTPS `source_url`, and a non-empty `source_note`. An unrelated override never
+clears another device's failure.
 
 ## Security-date provenance guard
 
@@ -180,6 +190,8 @@ it never substitutes the API's `support` field. A record with a support date but
 explicit security end trips the validation gate and stops the entire publication. The
 previous dataset keeps serving until the security date is published, a manufacturer-backed
 override is reviewed, or the provenance-aware schema and renderers are deployed together.
+When a manufacturer-backed override is used, its source and reasoning remain auditable in
+`overrides.json`; the pipeline never treats the API's `support` value itself as evidence.
 
 Samsung dates reflect endoflife.date's explicit security-update end where published.
 Records without an explicit security end should be treated as unknown and verified with

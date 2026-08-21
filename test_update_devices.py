@@ -2,7 +2,7 @@ import io
 import unittest
 from contextlib import redirect_stdout
 
-from update_devices import normalize
+from update_devices import apply_overrides, normalize
 
 
 class NormalizeSecurityEolTests(unittest.TestCase):
@@ -23,7 +23,8 @@ class NormalizeSecurityEolTests(unittest.TestCase):
         self.assertEqual([], devices)
         self.assertIn("support date cannot substitute", output.getvalue())
         self.assertEqual(1, len(semantic_failures))
-        self.assertIn("Galaxy A23 5G", semantic_failures[0])
+        self.assertEqual("samsung-galaxy-a23-5g", semantic_failures[0]["id"])
+        self.assertIn("Galaxy A23 5G", semantic_failures[0]["message"])
 
     def test_out_of_scope_support_only_record_does_not_trip_guard(self):
         raw = [{
@@ -60,6 +61,92 @@ class NormalizeSecurityEolTests(unittest.TestCase):
             }],
             normalize("Samsung", raw),
         )
+
+
+class OverrideProvenanceTests(unittest.TestCase):
+    RAW_A23 = [{
+        "cycle": "galaxy-a23-5g",
+        "releaseLabel": "Galaxy A23 5G",
+        "releaseDate": "2022-09-02",
+        "eol": False,
+        "support": "2025-09-02",
+    }]
+
+    A23_FIELDS = {
+        "brand": "Samsung",
+        "model": "Galaxy A23 5G",
+        "released": "2022-09-02",
+        "eol": "2026-09-30",
+    }
+
+    def normalize_a23(self):
+        failures = []
+        devices = normalize("Samsung", self.RAW_A23, failures)
+        return devices, failures
+
+    def sourced_override(self, **changes):
+        override = {
+            "id": "samsung-galaxy-a23-5g",
+            "add": True,
+            "fields": self.A23_FIELDS.copy(),
+            "security_eol_basis": "manufacturer_exact",
+            "source_url": "https://www.samsung.com/uk/example",
+            "source_note": "Samsung UK publishes the exact security deadline.",
+            "reason": "Manufacturer-backed correction.",
+        }
+        override.update(changes)
+        return override
+
+    def test_matching_sourced_date_clears_guard(self):
+        devices, failures = self.normalize_a23()
+
+        result = apply_overrides(
+            devices, failures, entries=[self.sourced_override()])
+
+        self.assertEqual([], failures)
+        self.assertEqual("2026-09-30", result[0]["eol"])
+        self.assertEqual("override", result[0]["source"])
+
+    def test_missing_provenance_does_not_clear_guard(self):
+        devices, failures = self.normalize_a23()
+
+        result = apply_overrides(
+            devices,
+            failures,
+            entries=[self.sourced_override(source_url=None)],
+        )
+
+        self.assertEqual(1, len(failures))
+        self.assertEqual("2026-09-30", result[0]["eol"])
+
+    def test_unrelated_override_does_not_clear_guard(self):
+        devices, failures = self.normalize_a23()
+        unrelated = self.sourced_override(
+            id="samsung-galaxy-z-fold8",
+            fields={
+                "brand": "Samsung",
+                "model": "Galaxy Z Fold8",
+                "released": "2026-08-07",
+                "eol": "2033-07-31",
+            },
+        )
+
+        apply_overrides(devices, failures, entries=[unrelated])
+
+        self.assertEqual(1, len(failures))
+        self.assertEqual("samsung-galaxy-a23-5g", failures[0]["id"])
+
+    def test_explicit_exclusion_clears_matching_guard(self):
+        devices, failures = self.normalize_a23()
+
+        result = apply_overrides(devices, failures, entries=[{
+            "id": "samsung-galaxy-a23-5g",
+            "remove": True,
+            "reason": "Explicitly exclude until a security date is published.",
+        }])
+
+        self.assertEqual([], failures)
+        self.assertEqual([], result)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,91 @@
 {
   "schema_version": "1.0",
   "purpose": "Manual corrections. update_devices.py merges these LAST, so an entry here always beats the automated source. Never hand-edit devices.json - fix it here instead. Format documented in PIPELINE-OPS.md.",
-  "overrides": []
+  "overrides": [
+    {
+      "id": "samsung-galaxy-a23-5g",
+      "add": true,
+      "fields": {
+        "brand": "Samsung",
+        "model": "Galaxy A23 5G",
+        "released": "2022-09-02",
+        "eol": "2026-09-30"
+      },
+      "security_eol_basis": "manufacturer_exact",
+      "source_url": "https://www.samsung.com/uk/business/smartphones/galaxy-a/galaxy-a23-5g-awesome-blue-64gb-sm-a236blbueub/",
+      "scope_context_url": "https://image-us.samsung.com/SamsungUS/samsungbusiness/pdf/spec-sheets/Galaxy-A23-5G-Spec-Sheet-T-Mobile.pdf",
+      "source_note": "Samsung UK publishes 30 September 2026 as the exact security-update end. The dataset is scoped to US-sold models; Samsung US material promises four years of security updates but does not publish an exact end date.",
+      "reason": "Replace the incorrect Android-upgrade support fallback with Samsung's published security-update deadline, while recording the UK/US market distinction.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-z-fold8",
+      "add": true,
+      "fields": {
+        "brand": "Samsung",
+        "model": "Galaxy Z Fold8",
+        "released": "2026-08-07",
+        "eol": "2033-07-31"
+      },
+      "security_eol_basis": "manufacturer_exact",
+      "source_url": "https://www.samsung.com/sec/smartphones/galaxy-z-fold8/specs/",
+      "source_note": "Samsung Korea independently publishes 2033-07-31 as the security-update support deadline. The value matches endoflife.date's support/eoasFrom field, but this override relies on Samsung's security-specific specification rather than inheriting the Android-upgrades fallback; the upstream label is incomplete for this record.",
+      "reason": "Add the current flagship from Samsung's exact security-update specification while upstream eolFrom remains empty.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-z-flip8",
+      "add": true,
+      "fields": {
+        "brand": "Samsung",
+        "model": "Galaxy Z Flip8",
+        "released": "2026-08-07",
+        "eol": "2033-07-31"
+      },
+      "security_eol_basis": "manufacturer_exact",
+      "source_url": "https://www.samsung.com/sec/smartphones/galaxy-z-flip8/specs/",
+      "source_note": "Samsung Korea independently publishes 2033-07-31 as the security-update support deadline. The value matches endoflife.date's support/eoasFrom field, but this override relies on Samsung's security-specific specification rather than inheriting the Android-upgrades fallback; the upstream label is incomplete for this record.",
+      "reason": "Add the current flagship from Samsung's exact security-update specification while upstream eolFrom remains empty.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-z-fold8-ultra",
+      "add": true,
+      "fields": {
+        "brand": "Samsung",
+        "model": "Galaxy Z Fold8 Ultra",
+        "released": "2026-08-07",
+        "eol": "2033-07-31"
+      },
+      "security_eol_basis": "manufacturer_exact",
+      "source_url": "https://www.samsung.com/sec/smartphones/galaxy-z-fold8-ultra/specs/",
+      "source_note": "Samsung Korea independently publishes 2033-07-31 as the security-update support deadline. The value matches endoflife.date's support/eoasFrom field, but this override relies on Samsung's security-specific specification rather than inheriting the Android-upgrades fallback; the upstream label is incomplete for this record.",
+      "reason": "Add the current flagship from Samsung's exact security-update specification while upstream eolFrom remains empty.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-a12-india",
+      "remove": true,
+      "reason": "Explicit regional India variant outside the dataset's US-model scope; the US Galaxy A12 remains tracked separately.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-a12-nacho",
+      "remove": true,
+      "reason": "Regional Galaxy A12 Nacho variant outside the dataset's US-model scope; the US Galaxy A12 remains tracked separately.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-a52",
+      "remove": true,
+      "reason": "Non-5G regional Galaxy A52 record outside the dataset's US-model scope; Galaxy A52 5G remains tracked separately.",
+      "added": "2026-08-21"
+    },
+    {
+      "id": "samsung-galaxy-a40",
+      "remove": true,
+      "reason": "Galaxy A40 is outside the dataset's US-model scope and has never been part of the published dataset.",
+      "added": "2026-08-21"
+    }
+  ]
 }
