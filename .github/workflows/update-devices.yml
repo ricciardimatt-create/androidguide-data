@@ -41,8 +41,8 @@ jobs:
       # WordPress push below; the weekly staleness check is the backstop.
       - name: Purge jsDelivr CDN and verify it took
         run: |
-          BASE_PURGE="https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main"
-          BASE_CDN="https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main"
+          BASE_PURGE="https://purge.jsdelivr.net/gh/androidguides/androidguide-data@main"
+          BASE_CDN="https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main"
           EXPECT=$(python -c "import json;print(json.load(open('devices.json'))['generated'])")
           echo "repo devices.json generated: $EXPECT — purging CDN and confirming sync"
           SYNCED=0

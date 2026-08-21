@@ -57,7 +57,7 @@ a smoke detector, not a sprinkler.
 
 `/devices` loads the device list in this order, stopping at the first that works:
 
-1. **CDN** — `https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json`
+1. **CDN** — `https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json`
 2. **Same-origin** — `https://androidguides.com/wp-content/uploads/androidguide/devices.json`
    (pushed by the pipe every run; step 8 above)
 3. **Embedded snapshot** — a 130-device copy baked into the /devices page itself,
@@ -239,7 +239,7 @@ unavailable.
 3. Back on `main`: `devices.json` → pencil → select all → paste → commit
    `Rollback to <date> data`.
 4. Force the CDN to pick it up now: open
-   `https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json`
+   `https://purge.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json`
    in your browser (a page of JSON = success). To read the current CDN copy in a
    browser without its cache, add `?cb=1` to the devices.json URL.
 5. Trigger the workflow once (Actions → Run workflow) so the same-origin copy and

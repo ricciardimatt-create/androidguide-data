@@ -17,8 +17,8 @@ import urllib.request
 from datetime import date, datetime
 
 REPO_FILE = "devices.json"
-CDN_URL = "https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json"
-PURGE_URL = "https://purge.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json"
+CDN_URL = "https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json"
+PURGE_URL = "https://purge.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json"
 MAX_AGE_DAYS = 40   # monthly pipe + slack
 CDN_LAG_DAYS = 7
 

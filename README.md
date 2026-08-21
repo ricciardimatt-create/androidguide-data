@@ -24,7 +24,7 @@ Top level: `schema_version`, `generated` (ISO date the file was built), `source_
 Stable URL — this will not move:
 
 ```
-https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json
+https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json
 ```
 
 Every `id` maps to a page at `https://androidguides.com/device/<id>/` — for example
@@ -51,7 +51,7 @@ Plain text:
 
 ```
 AndroidGuides.com. "Android Security Update Dataset." Version YYYY-MM-DD.
-https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json
+https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json
 ```
 
 Use the `generated` date from the copy you read as the version.
@@ -64,7 +64,7 @@ BibTeX:
   author = {{AndroidGuides.com}},
   year   = {2026},
   note   = {Version YYYY-MM-DD, MIT License},
-  url    = {https://cdn.jsdelivr.net/gh/ricciardimatt-create/androidguide-data@main/devices.json}
+  url    = {https://cdn.jsdelivr.net/gh/androidguides/androidguide-data@main/devices.json}
 }
 ```
 
